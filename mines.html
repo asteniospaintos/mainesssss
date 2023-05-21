@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabuleiro 5x5</title>
+    <style>
+        body {
+            background-color: rgb(31, 29, 29);
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 5px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .box div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box div table {
+            margin: auto;
+        }
+
+        .box div td {
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+            border-radius: 5px;
+            transition: 0.2s;
+            text-align: center;
+            font-size: 45px;
+        }
+
+        .box div td:hover {
+            background-color: rgb(100, 26, 168);
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-family: Arial;
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Mines Hack<br>Minas: 02</h1>
+
+        <div>
+            <table id="tabuleiro">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var table = document.getElementById("tabuleiro");
+        var cells = table.getElementsByTagName("td");
+
+        function changeStars() {
+            var randomIndexes = [];
+            while (randomIndexes.length < 5) {
+                var randomIndex = Math.floor(Math.random() * cells.length);
+                if (!randomIndexes.includes(randomIndex)) {
+                    randomIndexes.push(randomIndex);
+                }
+            }
+
+            for (var i = 0; i < cells.length; i++) {
+                if (randomIndexes.includes(i)) {
+                    cells[i].innerHTML = "⭐";
+                } else {
+                    cells[i].innerHTML = "";
+                }
+            }
+        }
+
+        changeStars();
+        setInterval(changeStars, 15000);
+    </script>
+</body>
+</html>
